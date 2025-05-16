@@ -1,7 +1,7 @@
 import re
 from collections import defaultdict
 from datetime import datetime
-import matplotlib.pyplot as plt  # Feature 4: Visualization
+import matplotlib.pyplot as plt  
 
 
 def parse_auth_log(file_path):
@@ -57,10 +57,10 @@ def visualize_failed_attempts(failed_attempts):
 
 
 if __name__ == "__main__":
-    log_path = "sample_logs/logs.log"  # Adjust path if needed
+    log_path = "sample_logs/logs.log"  
     failed_attempts = parse_auth_log(log_path)
 
-    print_summary(failed_attempts)           # Feature 1
-    detect_brute_force(failed_attempts)      # Existing feature
-    generate_blocklist(failed_attempts)      # Feature 3
-    visualize_failed_attempts(failed_attempts)  # Feature 4
+    print_summary(failed_attempts)          
+    detect_brute_force(failed_attempts)      
+    generate_blocklist(failed_attempts)     
+    visualize_failed_attempts(failed_attempts) 
