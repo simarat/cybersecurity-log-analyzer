@@ -1,0 +1,6 @@
+streamlit==1.49.1
+matplotlib
+pandas
+numpy
+altair
+pydeck
