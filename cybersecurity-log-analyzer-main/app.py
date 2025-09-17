@@ -4,7 +4,7 @@ from datetime import datetime
 import streamlit as st
 
 # ensure project root is importable
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 from log_analyzer.auth_log_parser import parse_auth_log
 from log_analyzer.main import visualize_failed_attempts  # optional reuse
@@ -13,9 +13,10 @@ st.set_page_config(page_title="Cybersecurity Log Analyzer", layout="wide")
 st.title("🔐 Cybersecurity Log Analyzer")
 
 # config
-OUTPUT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "outputs"))
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "outputs")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 MIN_FAILURES = 5  # change threshold here if you want
+
 
 def save_blocklist_ips(ips_with_counts, output_dir=OUTPUT_DIR):
     """
@@ -46,14 +47,14 @@ use_sample = st.checkbox("Analyze sample_logs/logs.log instead of upload", value
 
 filepath = None
 if use_sample:
-    sample_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "log_analyzer", "sample_logs", "logs.log"))
+    sample_path = os.path.join(os.path.dirname(__file__), "log_analyzer", "sample_logs", "logs.log")
     if os.path.exists(sample_path):
         filepath = sample_path
         st.info(f"Using sample log: {sample_path}")
     else:
         st.error("Sample log not found.")
 elif uploaded_file is not None:
-    temp_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "uploaded.log"))
+    temp_path = os.path.join(os.path.dirname(__file__), "uploaded.log")
     with open(temp_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
     filepath = temp_path
